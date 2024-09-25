@@ -1,0 +1,67 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.8 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.8">
+  <diagram name="Page-1" id="01L8-583iSmmFzShsbjK">
+    <mxGraphModel dx="1900" dy="621" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="180" width="630" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-2" value="" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/Kubernetes.svg;" vertex="1" parent="1">
+          <mxGeometry x="120" y="190" width="41.67" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-3" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="161.67" y="240" width="220" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-4" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+          <mxGeometry x="450" y="240" width="220" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-5" value="Workflow Controller" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" vertex="1" parent="1">
+          <mxGeometry x="174" y="280" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-6" value="Argo Server" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6a00ff;fontColor=#ffffff;strokeColor=#3700CC;" vertex="1" parent="1">
+          <mxGeometry x="171.67" y="380" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-7" value="Workflow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" vertex="1" parent="1">
+          <mxGeometry x="460" y="280" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-8" value="Pod that runs a job" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" vertex="1" parent="1">
+          <mxGeometry x="460" y="380" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="P9fq8Olqt1ty9Mh2_U3G-5" target="P9fq8Olqt1ty9Mh2_U3G-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="350" as="sourcePoint" />
+            <mxPoint x="450" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-11" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="P9fq8Olqt1ty9Mh2_U3G-5" target="P9fq8Olqt1ty9Mh2_U3G-8">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="350" as="sourcePoint" />
+            <mxPoint x="450" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-12" value="&lt;b&gt;Kubernates Cluster&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="161.67" y="200" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-13" value="&lt;b&gt;Argo&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="161.67000000000002" y="240" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-14" value="&lt;b&gt;Job Namespace&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="450" y="240" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-15" value="Watch" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="381.67" y="280" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-16" value="Creates" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="385" y="350" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="P9fq8Olqt1ty9Mh2_U3G-17" target="P9fq8Olqt1ty9Mh2_U3G-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P9fq8Olqt1ty9Mh2_U3G-17" value="" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.user;" vertex="1" parent="1">
+          <mxGeometry x="-70" y="385" width="47.5" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

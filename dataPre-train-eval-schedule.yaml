@@ -1,0 +1,139 @@
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  generateName: iris-ml-cron-pipeline-
+spec:
+  # Define the schedule in Cron format (This example runs daily at 12:00 PM UTC)
+  schedule: "*/3 * * * *"
+  
+  # Optional: Define concurrency policy (how it handles when previous jobs are still running)
+  concurrencyPolicy: "Allow"  # Options: Allow, Forbid, Replace
+
+  # Optional: Set to true to suspend future runs
+  suspend: false
+
+  # Optional: Limits the number of successful finished jobs to retain
+  successfulJobsHistoryLimit: 3
+
+  # Optional: Limits the number of failed finished jobs to retain
+  failedJobsHistoryLimit: 1
+  
+  # Define the entrypoint for your workflow
+  workflowSpec:
+    entrypoint: ml-pipeline
+
+    # Define 1 GB shared volume
+    volumeClaimTemplates:
+    - metadata:
+        name: data                     
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
+
+    # Templates for the workflow
+    templates:
+    - name: ml-pipeline
+      # DAG template to define stages of Machine Learning Pipeline
+      dag:
+        tasks:
+        - name: preprocess-data
+          template: preprocess
+        - name: train-model
+          template: train
+          dependencies: [preprocess-data]
+        - name: evaluate-model
+          template: evaluate
+          dependencies: [train-model]
+
+    # Preprocessing step
+    - name: preprocess
+      container:
+        image: python:3.8-slim
+        command: [bash, -c]
+        args:
+          - |
+            pip install pandas scikit-learn
+            python -c "
+            import pandas as pd
+            from sklearn.datasets import load_iris
+            
+            # Load Iris dataset
+            iris = load_iris()
+            df = pd.DataFrame(iris.data, columns=iris.feature_names)
+            df['target'] = iris.target
+            
+            # Save preprocessed data
+            df.to_csv('/mnt/data/iris_prepared.csv', index=False)
+            print('Iris dataset preprocessing completed.')
+            "
+        volumeMounts:
+        - name: data
+          mountPath: /mnt/data
+
+    # Training step
+    - name: train
+      container:
+        image: python:3.8-slim
+        command: [bash, -c]
+        args:
+          - |
+            pip install pandas scikit-learn joblib
+            python -c "
+            import pandas as pd
+            from sklearn.model_selection import train_test_split
+            from sklearn.ensemble import RandomForestClassifier
+            import joblib
+            
+            # Load preprocessed data
+            df = pd.read_csv('/mnt/data/iris_prepared.csv')
+            X = df.drop('target', axis=1)
+            y = df['target']
+            
+            # Train model
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+            model = RandomForestClassifier(n_estimators=100, random_state=42)
+            model.fit(X_train, y_train)
+            
+            # Save model
+            joblib.dump(model, '/mnt/data/iris_model.joblib')
+            print('Model training completed.')
+            "
+        volumeMounts:
+        - name: data
+          mountPath: /mnt/data
+
+    # Model evaluation step
+    - name: evaluate
+      container:
+        image: python:3.8-slim
+        command: [bash, -c]
+        args:
+          - |
+            pip install pandas scikit-learn joblib
+            python -c "
+            import pandas as pd
+            from sklearn.metrics import accuracy_score
+            import joblib
+            
+            # Load preprocessed data and model
+            df = pd.read_csv('/mnt/data/iris_prepared.csv')
+            X = df.drop('target', axis=1)
+            y = df['target']
+            model = joblib.load('/mnt/data/iris_model.joblib')
+            
+            # Evaluate model
+            y_pred = model.predict(X)
+            accuracy = accuracy_score(y, y_pred)
+            
+            print(f'Model Evaluation Results:')
+            print(f'Accuracy: {accuracy}')
+            
+            # Save evaluation results
+            with open('/mnt/data/evaluation_results.txt', 'w') as f:
+              f.write(f'Accuracy: {accuracy}\n')
+            "
+        volumeMounts:
+        - name: data
+          mountPath: /mnt/data
